@@ -1,0 +1,6 @@
+#!ipxe
+prompt --key 0x02 --timeout 5000 Press Ctrl-B for the iPXE command line... && shell ||
+:retry_dhcp
+dhcp || goto retry_dhcp
+:retry_chain
+chain http://boot.rackspace.com/menu.ipxe || goto retry_chain
